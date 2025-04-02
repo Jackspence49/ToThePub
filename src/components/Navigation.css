@@ -4,13 +4,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--navigation-bg);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .nav-left, .nav-right {
   display: flex;
-  gap: 3rem;
   flex: 1;
   white-space: nowrap;
 }
@@ -18,6 +17,7 @@
 .nav-left {
   justify-content: flex-start;
   padding-left: 2rem;
+  position: relative;
 }
 
 .nav-right {
@@ -34,7 +34,7 @@
 
 .navigation a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-primary);
   font-weight: 500;
   transition: color 0.3s ease;
   font-size: 1.1rem;
@@ -42,7 +42,7 @@
 }
 
 .navigation a:hover {
-  color: #007bff;
+  color: var(--primary);
 }
 
 .logo {
@@ -56,17 +56,99 @@
   width: auto;
 }
 
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  gap: 4rem;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  position: absolute;
+  left: 1rem;
+  outline: none;
+}
+
+.hamburger-menu:focus {
+  outline: none;
+}
+
+.hamburger-menu span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .navigation {
     padding: 1rem;
     flex-wrap: nowrap;
   }
   
-  .nav-left, .nav-right {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-left {
+    padding-left: 0;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 0;
+    width: 200px;
+    background-color: var(--navigation-bg);
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 0 0 8px 8px;
+    z-index: 9;
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-right {
     gap: 1.5rem;
     padding-left: 1rem;
-    padding-right: 1rem;
-    white-space: nowrap;
+    padding-right: 2rem;
+    white-space: normal;
+  }
+  
+  .nav-right a {
+    white-space: normal;
+    text-align: right;
   }
   
   .logo img {
@@ -75,6 +157,18 @@
   
   .navigation a {
     font-size: 1rem;
-    white-space: nowrap;
+  }
+
+  /* Hamburger Animation */
+  .hamburger-menu.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
   }
 } 
